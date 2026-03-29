@@ -1,0 +1,27 @@
+USE DATABASE PDF_RAG_DB;
+USE SCHEMA APP;
+
+-- =========================================================
+-- 04. DOCUMENT AND CHUNK TABLES
+-- =========================================================
+CREATE OR REPLACE TABLE PDF_DOCUMENTS (
+  RELATIVE_PATH         STRING PRIMARY KEY,
+  SIZE_BYTES            NUMBER,
+  LAST_MODIFIED         TIMESTAMP_TZ,
+  MD5                   STRING,
+  FILE_URL              STRING,
+  OCR_TEXT              STRING,
+  INGESTED_AT           TIMESTAMP_TZ DEFAULT CURRENT_TIMESTAMP(),
+  UPDATED_AT            TIMESTAMP_TZ DEFAULT CURRENT_TIMESTAMP(),
+  IS_ACTIVE             BOOLEAN DEFAULT TRUE
+);
+
+CREATE OR REPLACE TABLE PDF_CHUNKS (
+  CHUNK_PK              STRING PRIMARY KEY,
+  RELATIVE_PATH         STRING,
+  CHUNK_NUM             NUMBER,
+  CHUNK_TEXT            STRING,
+  LAST_MODIFIED         TIMESTAMP_TZ,
+  MD5                   STRING,
+  INGESTED_AT           TIMESTAMP_TZ DEFAULT CURRENT_TIMESTAMP()
+);
