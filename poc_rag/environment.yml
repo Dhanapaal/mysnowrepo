@@ -2,7 +2,6 @@ name: pdf_rag_env
 channels:
   - snowflake
 dependencies:
-  - python=3.11
-  - streamlit=1.26.0
+  - streamlit
   - pandas
   - snowflake-snowpark-python
